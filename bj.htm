@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>北大录取通知书</title>
+    <link type="text/css" rel="stylesheet" href="./bj/frozen.css">
+    <link type="text/css" rel="stylesheet" href="./bj/module.css">
+
+</head>
+<body>
+<div class="wrapper">
+    <!-- 图片-->
+    <canvas id="canvas" height=495.2></canvas>
+    <!-- 提交的表单-->
+    <div class="ui-form">
+        <form action="">
+            <div class="ui-form-item ui-border-b">
+                <input type="text" name="a" placeholder="输入你的姓名,限制2~4个字" maxlength="4">
+            </div>
+            <div class="ui-form-item ui-border-b">
+                <input type="text" name="b" placeholder="输入你的院系,限制2~16个字" maxlength="16">
+            </div>
+            <div class="ui-form-item ui-border-b">
+                <input type="text" name="c" placeholder="输入你的专业,限制2~16个字" maxlength="16">
+            </div>
+            <div class="ui-btn-wrap">
+                <button class="ui-btn-lg ui-btn-danger">确定</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // 获取参数
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] === variable) {
+                return pair[1];
+            }
+        }
+        return (false);
+    }
+
+    var a = getQueryVariable("a");
+    var b = getQueryVariable("b");
+    var c = getQueryVariable("c");
+
+    //画图
+    var aa = document.getElementById('canvas');
+    var bb = aa.getContext('2d');
+    aa.width = window.screen.availWidth;
+
+    var img = new Image;
+    img.src = 'bj/bg.png';
+
+    img.onload = function () {
+        bb.scale(0.4,0.4);
+        bb.drawImage(img,(aa.width-img.width*0.36)/2, 20);
+
+        bb.fillStyle = '#2d2d2d';   // 文字填充颜色
+        bb.font = '34px STXingkai';
+        if (!a) {
+            a = '张慧敏';
+        }
+        if (!b) {
+            b = '       和家';
+        }
+        if (!c) {
+            c = '       爱情与幸福';
+        }
+        console.log(a);
+        bb.fillText(decodeURI(a), 180, 590);
+        bb.fillText(decodeURI(b), 447, 652);
+        bb.fillText(decodeURI(c), 220, 712);
+
+    };
+    bb.stroke();
+</script>
+
+<div class="footer">
+    <div class="icon-weixin"></div>
+    Au科技 <br>
+    免责声明<br>此应用所有生成的素材仅供娱乐<br>此应用生成的素材切莫非法使用<br>因生成的素材所产生的法律效力将由用户自己承担
+</div>
+</body>
+</html>
