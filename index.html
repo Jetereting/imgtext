@@ -11,7 +11,7 @@
 
 </head>
 <body>
-<div class="wrapper">
+<div class="wrapper" id="wrapper">
     <!-- 图片-->
     <canvas id="canvas" height=495.2></canvas>
     <!-- 提交的表单-->
@@ -76,9 +76,14 @@
         }
         console.log(a);
         bb.fillText(decodeURI(a), 187, 590);
-        bb.fillText(decodeURI(b), 457, 652);
+        bb.fillText(decodeURI(b), 462, 652);
         bb.fillText(decodeURI(c), 220, 712);
-
+        let base64ImgSrc = aa.toDataURL("image/png");
+        let img2 = document.createElement("img");
+        img2.src = base64ImgSrc;
+        document.getElementById("wrapper").insertBefore(img2,aa);
+        //隐藏 canvas
+        document.getElementById("canvas").style.display="none";
     };
     bb.stroke();
 </script>
